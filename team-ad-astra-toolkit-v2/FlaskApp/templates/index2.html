@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Team Ad Astra Sensor Tool Kit</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <link
+      href="//mincss.com/entireframework.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="{{url_for('static', filename = 'css/app.css')}}" rel="stylesheet">
+  </head>
+  <body>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/app1.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/app2.js') }}"></script>
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div class="container">
+        <a class="pagename current" href="#">Team Ad Astra Sensor Tool</a>
+      </div>
+    </nav>
+    <form  action="{{url_for('index')}}" method="post">
+    <table>  
+        <tr>
+      <td><input type="submit" name="submit" value="Control Servo/Seven Segment" class="green" > </td>
+      <td><input type="submit" name="submit" value="Light LED" class="green"> </td>
+      <td><input type="submit" name="submit" value="Turn Off" class="green"> </td>
+          </tr>
+      </table>
+      </form> 
+      <p>Servo Status: {{value1}},</p>
+      <p>LED Status: {{value2}},</p>
+    {% if index==1 %} 
+    <div class="grid-container">
+        <div class="grid-child blue"><div id="tableServo" width="150"></div></div> 
+        <div class="grid-child purple"><canvas id="potChart" width="800" height="500"></canvas></div>
+    </div>
+    {% elif index==2 %}
+    <div class="grid-container">
+      <div class="grid-child blue"><div id="tableLED" width="150"></div></div> 
+      <div class="grid-child purple"><canvas id="photChart" width="800" height="500"></canvas></div>
+  </div>
+    {% else %}
+    <p>Connection Closed</p>
+    {% endif %}  
+  </body>
+</html>
